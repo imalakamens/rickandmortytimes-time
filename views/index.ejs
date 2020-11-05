@@ -27,7 +27,9 @@
             <div class="panel-heading text-center">
               <h2><%= epData.name %></h2>
             </div>
-            <div class="panel-body">
+            <div class="panel-body text-center">
+              <h4><%= epData.episode %></h4>
+              <h4><%= epData.air_date %></h4>
               <h3>Characters:</h3>
               <ul>
                 <% epData.characters.forEach(character => { %>
