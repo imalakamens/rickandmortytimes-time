@@ -6,14 +6,22 @@ const rootURL = 'https://rickandmortyapi.com/api/'
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  const episode = req.query.episode; // the '.episode' came from the name on form
+  const episodeId = req.query.episode; // the '.episode' came from the name on form
+
 
   request(
-    `${rootURL}/episode/${episode}`,
+    `${rootURL}/episode/${episodeId}`,
     function(err, response, body) {
       const epData = JSON.parse(body);
-      console.log(epData);
-      res.render('index', { epData });
+      request(
+        `${rootURL}/character/${charId}`,
+        function(err, response, body) {
+          epData.chars = JSON.parse(body);
+          console.log(epData.chars);
+
+          res.render('index', { epData });
+        }
+      );
     }
    );
 });
